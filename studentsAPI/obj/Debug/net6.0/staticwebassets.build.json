@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "5Y0YJucvxXjbKB7ksJCPPmLAR66xw6YBhmh8oDE+4XM=",
+  "Source": "studentsAPI",
+  "BasePath": "_content/studentsAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
