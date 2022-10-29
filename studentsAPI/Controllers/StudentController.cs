@@ -30,7 +30,7 @@ namespace studentsAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Student>>> AddHero(Student student)
+        public async Task<ActionResult<List<Student>>> Post(Student student)
         {
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
@@ -39,7 +39,7 @@ namespace studentsAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Student>>> UpdateHero(Student request)
+        public async Task<ActionResult<List<Student>>> Put(Student request)
         {
             var dbStudent = await _context.Students.FindAsync(request.Id);
             if (dbStudent == null)
