@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace studentsAPI.Controllers
 {
@@ -28,7 +29,20 @@ namespace studentsAPI.Controllers
                 return BadRequest("Student not found..");
             return Ok(student);
         }
-
+        [HttpGet("/api/Student/find")]
+        public async Task<ActionResult<Student>> Get(string find ="")
+        {
+           var student =  _context.Students.AsQueryable();
+            if (!string.IsNullOrEmpty(find))
+            {
+                student =  student.Where(c => c.name.Contains(find));
+                student = student.OrderBy(c => c.name);
+                await student.ToListAsync();
+                if (student == null)
+                    return BadRequest("Student not found..");
+            }
+            return Ok(student);
+        }
         [HttpPost]
         public async Task<ActionResult<List<Student>>> Post(Student student)
         {
