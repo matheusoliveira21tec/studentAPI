@@ -29,13 +29,13 @@ namespace studentsAPI.Controllers
                 return BadRequest("Student not found..");
             return Ok(student);
         }
-        [HttpGet("/api/Student/find")]
-        public async Task<ActionResult<Student>> Get(string find ="")
+        [HttpGet("/api/Student/find/{query}")]
+        public async Task<ActionResult<Student>> Get(string query ="")
         {
            var student =  _context.Students.AsQueryable();
-            if (!string.IsNullOrEmpty(find))
+            if (!string.IsNullOrEmpty(query))
             {
-                student =  student.Where(c => c.name.Contains(find));
+                student =  student.Where(c => c.name.Contains(query));
                 student = student.OrderBy(c => c.name);
                 await student.ToListAsync();
                 if (student == null)
